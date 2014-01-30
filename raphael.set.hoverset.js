@@ -37,7 +37,8 @@ Raphael.st.hoverset = function(r, overfunc, outfunc, outdelay) {
 	}
 
 	var outhandler = function(evt){
-		var overset = false;
+		var overset = false,
+			$this = this;
 		r.getById(evt.target.raphaelid).data("Raphael.st.hoverset.over", false);
 		
 		clearTimeout(home['Raphael.st.hoverset.timeout']);
@@ -45,7 +46,7 @@ Raphael.st.hoverset = function(r, overfunc, outfunc, outdelay) {
 			overset = lookForOver(home);
 			if(!overset){
 				home['Raphael.st.hoverset.overset'] = false;
-				outfunc.call(this, evt);
+				outfunc.call($this, evt);
 			}
 		}, outdelay || 0);
 	}
